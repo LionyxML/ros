@@ -16,3 +16,4 @@
 	    (insert (concat "[[" filename "]]"))
 	    (org-display-inline-images t t)))))
 
+(provide 'ros)

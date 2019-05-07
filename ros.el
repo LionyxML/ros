@@ -12,7 +12,10 @@
 			 "_"
 			 (format-time-string "%Y%m%d_%H%M%S")
 			 ".png")))
-	    (call-process "scrot" nil nil nil "-s" filename)
-	    (insert (concat "[[" filename "]]"))
+            (if (executable-find "scrot")
+                (call-process "scrot" nil nil nil "-s" filename)
+              (call-process "screencapture" nil nil nil "-s" filename))
+            (when (file-exists-p filename)
+              (insert (concat "[[" filename "]]")))
 	    (org-display-inline-images t t)))))
 

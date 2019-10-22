@@ -1,7 +1,15 @@
-;; Rahul Org-mode Screenshot takes a screenshot with scrot -s (waits for screen
-;; selection), saves it as orgfileopened.org_YYYYMMDD_hhmmss.png, inserts 
-;; the link and turns on the display-inline-images, showing your screenshot directly
-;; to the org-file" 
+;;    ros - Rahul's Org-Mode Screenshot
+;;
+;;    ros is invoked with "M-x ros", then it waits for your selection, takes a
+;; screenshot and saves it as orgfileopened.org_YYYYMMDD_hhmmss.png.
+;;
+;;    Finally, it keeps working by inserting a link and turning ON the
+;; display-inline-images, showing the taken screenshot directly into
+;; your file.
+;;
+;;    Track updates, contact the author and see a demo on github.com/Lionyx/ros
+;; or http://rahuljuliato.com
+;;
 (add-hook 'org-mode-hook
 	  (lambda ()
 	  (defun ros ()

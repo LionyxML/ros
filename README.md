@@ -1,20 +1,27 @@
-ros - Rahul Org-mod Screenshot
-------------------------------
-My implementation for the "how do I paste images into an org file?" question.
+# ros - Rahul's Org-mode Screenshot
 
-Rahul Org-mode Screenshot takes a screenshot with scrot -s (waits for screen selection), saves it as orgfileopened.org_YYYYMMDD_hhmmss.png, inserts the link and turns on the display-inline-images, showing your screenshot directly to the org-file" 
+My implementation for the **"how do I copy-paste images into an org file?"** question.
+
+ros is invoked with "M-x ros", then it waits for your selection, takes a screenshot and saves it as orgfileopened.org_YYYYMMDD_hhmmss.png.
+
+Finally, it keeps working by inserting a link and turning on the display-inline-images, showing the taken screenshot directly into your file (take a look at the screenshot below).
 
 
-Install
--------
-Simply copy the ros.el file contents to your ~/.emacs file and restart emacs or eval the dot file. Note that if you're under linux, you should have scrot installed in your system.
+## Requirements
 
-Usage
------
-Use M-x ros RET, select the part of the screen you want to cut. And a picture file should be created and linked to your document.
+- Linux: scrot (for taking screenshots); 
+- MacOS: screencapture (built-in for Mojave and Catalina...)
 
-Screenshot
-----------
+## Install
+
+Simply copy the ros.el file contents to your ~/.emacs file, restart emacs or eval the dot file.
+
+## Usage
+
+Use M-x ros RET, select the part of the screen you want to sreenshot, and a picture file should be created and linked to your document.
+
+## Screenshot
+
 Here it's what it does.
 
 ![ros in action](images/ros.gif)

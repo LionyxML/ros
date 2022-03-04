@@ -24,16 +24,16 @@
   :prefix "org-ros-*")
 
 (defcustom org-ros-primary-screencapture "scrot"
-  "Primary screencapture software (usually set to Linux systems)"
+  "Primary screencapture software (usually set to Linux systems)."
   :type 'string)
 
 (defcustom org-ros-secondary-screencapture "screencapture"
-  "Secondary screencapture software, if first fails to load (usually set to MacOS systems)"
+  "Secondary screencapture software, if first fails to load (usually set to MacOS systems)."
   :type 'string)
 
 ;;;###autoload
 (defun org-ros ()
-  "Screenshots an image to an org-file"
+  "Screenshots an image to an org-file."
   (interactive)
   (if buffer-file-name
       (progn

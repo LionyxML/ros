@@ -1,4 +1,4 @@
-;;;;  ros.el - Rahul's Org-Mode Screenshot -*- lexical-binding: t; -*-
+;;; ros.el --- Rahul's Org-Mode Screenshot -*- lexical-binding: t; -*-
 ;;
 ;;    ros is invoked with "M-x ros", then it waits for your selection, takes a
 ;; screenshot and saves it as orgfileopened.org_YYYYMMDD_hhmmss.png.
@@ -10,6 +10,7 @@
 ;;    Track updates, contact the author and see a demo on github.com/Lionyx/ros
 ;;    License: GPL2
 
+(require 'org)
 
 (defgroup ros nil
   "Screenshot tool for org-mode."
@@ -24,6 +25,7 @@
   "Secondary screencapture software, if first fails to load (usually set to MacOS systems)"
   :type 'string)
 
+;;;###autoload
 (defun ros ()
   "Screenshots an image to an org-file"
   (interactive)
@@ -49,3 +51,5 @@
   )
 
 (provide 'ros)
+
+;;; ros.el ends here

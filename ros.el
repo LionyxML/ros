@@ -1,4 +1,4 @@
-;;;;  ros.el - Rahul's Org-Mode Screenshot -*- lexical-binding: t; -*-
+;;; ros.el --- Rahul's Org-Mode Screenshot -*- lexical-binding: t; -*-
 ;;
 ;;    ros is invoked with "M-x ros", then it waits for your selection, takes a
 ;; screenshot and saves it as orgfileopened.org_YYYYMMDD_hhmmss.png.
@@ -49,3 +49,5 @@
   )
 
 (provide 'ros)
+
+;;; ros.el ends here

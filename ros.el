@@ -25,6 +25,7 @@
   "Secondary screencapture software, if first fails to load (usually set to MacOS systems)"
   :type 'string)
 
+;;;###autoload
 (defun ros ()
   "Screenshots an image to an org-file"
   (interactive)

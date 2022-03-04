@@ -10,6 +10,7 @@
 ;;    Track updates, contact the author and see a demo on github.com/Lionyx/ros
 ;;    License: GPL2
 
+(require 'org)
 
 (defgroup ros nil
   "Screenshot tool for org-mode."

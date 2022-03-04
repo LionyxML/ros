@@ -1,4 +1,4 @@
-# ros - Rahul's Org-mode Screenshot
+# org-ros - Rahul's Org-mode Screenshot
 
 My implementation for the **"how do I copy-paste images into an org file?"** question.
 

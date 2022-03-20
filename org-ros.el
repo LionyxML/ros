@@ -4,7 +4,7 @@
 ;; Version: 0.1.0
 ;; URL: https://github.com/LionyxML/ros
 ;; Package-Requires: ((emacs "24.1"))
-;; SPDX-License-Identifier: GPL-2.0-only
+;; SPDX-License-Identifier: GPL-2.0-or-later
 
 ;;; Commentary:
 ;;  ros is invoked with "M-x org-ros", then it waits for your selection, takes a

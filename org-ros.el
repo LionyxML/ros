@@ -43,7 +43,7 @@
 (defcustom org-ros-secondary-screencapture-switch "-s"
   "Secondary screencapture software selection switch."
   :type 'string)
- 
+
 ;;;###autoload
 (defun org-ros ()
   "Screenshots an image to an org-file."
@@ -58,8 +58,12 @@
                        (format-time-string "%Y%m%d_%H%M%S")
                        ".png")))
           (if (executable-find org-ros-primary-screencapture)
-	      (call-process org-ros-primary-screencapture nil nil nil org-ros-primary-screencapture-switch filename)
-	    (call-process org-ros-secondary-screencapture nil nil nil org-ros-secondary-screencapture-switch filename))
+              (if (equal org-ros-primary-screencapture "gnome-screenshot")
+                  (call-process org-ros-primary-screencapture nil nil nil "-a" "-f" filename)
+              )
+              (call-process org-ros-primary-screencapture nil nil nil org-ros-primary-screencapture-switch filename)
+              (call-process org-ros-secondary-screencapture nil nil nil org-ros-secondary-screencapture-switch filename)
+            )
           (insert "[[" filename "]]")
           (org-display-inline-images t t))
         (message "File created and linked..."))

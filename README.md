@@ -2,6 +2,10 @@
 
 [![MELPA](https://melpa.org/packages/org-ros-badge.svg)](https://melpa.org/#/org-ros)
 
+# Changes
+
+- Added Suppor for `gnome-screenshot` 
+
 My implementation for **"how do I copy-paste images into an org file?"** issue.
 
 ros is invoked with <kbd>M-x</kbd> `org-ros` <kbd>RET</kbd>, it waits for your selection, takes a screenshot and saves it as `orgfileopened.org_YYYYMMDD_hhmmss.png`.

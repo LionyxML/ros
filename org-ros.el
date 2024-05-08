@@ -43,7 +43,18 @@
 (defcustom org-ros-secondary-screencapture-switch "-s"
   "Secondary screencapture software selection switch."
   :type 'string)
- 
+
+(defcustom org-ros-powershell-screencapture "powershell.exe"
+  "Powershell screencapture software (for people using wsl2)."
+  :type 'string)
+
+(defcustom org-ros-subdirectory ""
+  "Subdirectory to store screenshots."
+  :type 'string)
+
+(defconst org-ros-dir (file-name-directory (or load-file-name buffer-file-name)))
+
+
 ;;;###autoload
 (defun org-ros ()
   "Screenshots an image to an org-file."
@@ -51,16 +62,28 @@
   (if buffer-file-name
       (progn
         (message "Waiting for region selection with mouse...")
-        (let ((filename
-               (concat "./"
-                       (file-name-nondirectory buffer-file-name)
-                       "_"
-                       (format-time-string "%Y%m%d_%H%M%S")
-                       ".png")))
-          (if (executable-find org-ros-primary-screencapture)
-	      (call-process org-ros-primary-screencapture nil nil nil org-ros-primary-screencapture-switch filename)
-	    (call-process org-ros-secondary-screencapture nil nil nil org-ros-secondary-screencapture-switch filename))
-          (insert "[[" filename "]]")
+        (if org-ros-subdirectory
+            (make-directory org-ros-subdirectory t))
+        (let* ((default-filename (concat
+                                  (file-name-nondirectory buffer-file-name)
+                                  "_"
+                                  (format-time-string "%Y%m%d_%H%M%S")
+                                  ".png"))
+               (display-name (read-string
+                              (format "Name the screenshot (default: \"%s\"): " default-filename)
+                              nil nil default-filename))
+               (filepath (file-name-concat (file-name-directory buffer-file-name)
+                                           org-ros-subdirectory
+                                           default-filename)))
+
+          (cond ((executable-find org-ros-primary-screencapture)
+                 (call-process org-ros-primary-screencapture nil nil nil org-ros-primary-screencapture-switch filepath))
+                ((executable-find org-ros-secondary-screencapture)
+                 (call-process org-ros-secondary-screencapture nil nil nil org-ros-secondary-screencapture-switch filepath))
+                ((executable-find org-ros-powershell-screencapture)
+                 (start-process "powershell" "*PowerShell*" "powershell.exe" "-File" (expand-file-name "./printsc.ps1" org-ros-dir) filepath)))
+
+          (insert "[[" filepath "]" "[" display-name "]]")
           (org-display-inline-images t t))
         (message "File created and linked..."))
     (message "You're in a not saved buffer! Save it first!")))

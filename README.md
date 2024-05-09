@@ -12,6 +12,7 @@ It then adds a link into your org file and turns ON `display-inline-images` show
 
 - Linux: scrot (for taking screenshots);
 - MacOS: screencapture (built-in for Mojave, Catalina, Big Sur, Monterey...)
+- Powershell: Powershell executable is found as `powershell.exe` within wsl2 installations
 - Emacs: 24.1
 
 ## Install

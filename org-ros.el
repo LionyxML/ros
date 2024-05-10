@@ -44,7 +44,7 @@
   "Secondary screencapture software selection switch."
   :type 'string)
 
-(defcustom org-ros-powershell-screencapture "powershell.exe"
+(defcustom org-ros-windows-screencapture "powershell.exe"
   "Powershell screencapture software (for people using wsl2)."
   :type 'string)
 
@@ -80,7 +80,7 @@
                  (call-process org-ros-primary-screencapture nil nil nil org-ros-primary-screencapture-switch filepath))
                 ((executable-find org-ros-secondary-screencapture)
                  (call-process org-ros-secondary-screencapture nil nil nil org-ros-secondary-screencapture-switch filepath))
-                ((executable-find org-ros-powershell-screencapture)
+                ((executable-find org-ros-windows-screencapture)
                  (start-process "powershell" "*PowerShell*" "powershell.exe" "-File" (expand-file-name "./printsc.ps1" org-ros-dir) filepath)))
 
           (insert "[[" filepath "]" "[" display-name "]]")

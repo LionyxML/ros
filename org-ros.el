@@ -45,7 +45,7 @@
   :type 'string)
 
 (defcustom org-ros-windows-screencapture "powershell.exe"
-  "Powershell screencapture software (for people using wsl2)."
+  "Windows screencapture software."
   :type 'string)
 
 (defcustom org-ros-subdirectory ""

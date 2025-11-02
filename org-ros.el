@@ -52,6 +52,15 @@
   "Subdirectory to store screenshots."
   :type 'string)
 
+(defcustom org-ros-ask-for-filename t
+  "Ask for screenshot file name, if nil use default filename"
+  :type 'boolean)
+
+(defcustom org-ros-link-type 'link
+  "Which type of link should be created"
+  :type '(choice (const :tag "Link to file" link)
+                 (const :tag "Inline image" inline-image)))
+
 (defconst org-ros-dir (file-name-directory (or load-file-name buffer-file-name)))
 
 
@@ -60,7 +69,7 @@
   "Screenshots an image to an org-file."
   (interactive)
   (if buffer-file-name
-      (progn
+      (progn[[/home/kohnb/sw/ros/org-ros.el_20250516_100511.png]]
         (message "Waiting for region selection with mouse...")
         (if org-ros-subdirectory
             (make-directory org-ros-subdirectory t))
@@ -69,9 +78,11 @@
                                   "_"
                                   (format-time-string "%Y%m%d_%H%M%S")
                                   ".png"))
-               (display-name (read-string
-                              (format "Name the screenshot (default: \"%s\"): " default-filename)
-                              nil nil default-filename))
+               (display-name (if org-ros-ask-for-filename
+                                 (read-string
+                                  (format "Name the screenshot (default: \"%s\"): " default-filename)
+                                  nil nil default-filename)
+                               default-filename))
                (filepath (file-name-concat (file-name-directory buffer-file-name)
                                            org-ros-subdirectory
                                            default-filename)))
@@ -83,7 +94,10 @@
                 ((executable-find org-ros-windows-screencapture)
                  (start-process "powershell" "*PowerShell*" "powershell.exe" "-File" (expand-file-name "./printsc.ps1" org-ros-dir) filepath)))
 
-          (insert "[[" filepath "]" "[" display-name "]]")
+          (pcase org-ros-link-type
+            ('link         (insert "[[" filepath "]" "[" display-name "]]"))
+            ('inline-image (insert "[[" filepath "]]")))
+                   
           (org-display-inline-images t t))
         (message "File created and linked..."))
     (message "You're in a not saved buffer! Save it first!")))
